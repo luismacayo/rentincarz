@@ -14,10 +14,12 @@ class MatcheController extends Controller
      */
     public function index()
     {
-        $result = Matche::getMatchs();
+        return view('matches.index');
+
+
+        //$result = Matche::getMatchs();
         //dd($result['filters']);
         //dd($result['resultSet']);
-        dd($result['matches']);
     }
 
     /**

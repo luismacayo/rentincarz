@@ -10,17 +10,17 @@ use Carbon\Carbon;
 class Matche extends Model
 {
     //use HasFactory;
-    
+
     protected $fillable = [
         'match_id',
-        'homeTeam_name',
-        'homeTeam_shortname',
-        'homeTeam_tla',
-        'homeTeam_crest',
-        'awayTeam_name',
-        'awayTeam_shortname',
-        'awayTeam_tla',
-        'awayTeam_crest',
+        'hometeam_name',
+        'hometeam_shortname',
+        'hometeam_tla',
+        'hometeam_crest',
+        'awayteam_name',
+        'awayteam_shortname',
+        'awayteam_tla',
+        'awayteam_crest',
         'winner',
         'duration',
     ];

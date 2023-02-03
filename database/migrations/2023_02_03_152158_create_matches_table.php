@@ -17,15 +17,15 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('match_id')->unique();
             
-            $table->string('homeTeam_name');
-            $table->string('homeTeam_shortname');
-            $table->string('homeTeam_tla');
-            $table->string('homeTeam_crest');
+            $table->string('hometeam_name');
+            $table->string('hometeam_shortname');
+            $table->string('hometeam_tla');
+            $table->string('hometeam_crest');
 
-            $table->string('awayTeam_name');
-            $table->string('awayTeam_shortname');
-            $table->string('awayTeam_tla');
-            $table->string('awayTeam_crest');
+            $table->string('awayteam_name');
+            $table->string('awayteam_shortname');
+            $table->string('awayteam_tla');
+            $table->string('awayteam_crest');
             
             $table->string('winner')->nullable();
             $table->string('duration')->nullable();

@@ -35,20 +35,20 @@ class MatchesUpdate extends Command
             Matche::updateOrCreate([
                 'match_id' => $result['id']
             ],[
-                'homeTeam_name' => $result['homeTeam']['name'],
-                'homeTeam_shortname' => $result['homeTeam']['shortName'],
-                'homeTeam_tla' => $result['homeTeam']['tla'],
-                'homeTeam_crest' => $result['homeTeam']['crest'],
-                'awayTeam_name' => $result['awayTeam']['name'],
-                'awayTeam_shortname' => $result['awayTeam']['shortName'],
-                'awayTeam_tla' => $result['awayTeam']['tla'],
-                'awayTeam_crest' => $result['awayTeam']['crest'],
+                'hometeam_name' => $result['homeTeam']['name'],
+                'hometeam_shortname' => $result['homeTeam']['shortName'],
+                'hometeam_tla' => $result['homeTeam']['tla'],
+                'hometeam_crest' => $result['homeTeam']['crest'],
+                'awayteam_name' => $result['awayTeam']['name'],
+                'awayteam_shortname' => $result['awayTeam']['shortName'],
+                'awayteam_tla' => $result['awayTeam']['tla'],
+                'awayteam_crest' => $result['awayTeam']['crest'],
                 'winner' => $result['score']['winner'],
                 'duration' => $result['score']['duration'],
             ]);
         }
 
-        
+
 
         $this->output->success("Partidos actualizados (" . count($results['matches']) .")");
 
