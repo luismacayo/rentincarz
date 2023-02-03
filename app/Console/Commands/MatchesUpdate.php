@@ -35,6 +35,7 @@ class MatchesUpdate extends Command
             Matche::updateOrCreate([
                 'match_id' => $result['id']
             ],[
+                'match_date' => $result['utcDate'],
                 'hometeam_name' => $result['homeTeam']['name'],
                 'hometeam_shortname' => $result['homeTeam']['shortName'],
                 'hometeam_tla' => $result['homeTeam']['tla'],
