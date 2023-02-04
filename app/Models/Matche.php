@@ -23,6 +23,9 @@ class Matche extends Model
         'awayteam_shortname',
         'awayteam_tla',
         'awayteam_crest',
+        'competition_name',
+        'competition_type',
+        'competition_emblem',
         'winner',
         'duration',
     ];
@@ -35,25 +38,12 @@ class Matche extends Model
     protected function matchDate(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value,
+            get: fn ($value) => Carbon::parse($value),
             set: fn ($value) => Carbon::parse($value)->toDateTimeString(),
         );
     }
 
-    public static function getNextDayMatches()
-    {
-        $matches = self::next(1)->get();
-        return $matches;
-    }
-    
-    public static function getNextWeekMatches()
-    {
-        $matches = self::next(7)->get();
-        return $matches;
-    }
-
-
-    public static function getMatchs()
+    public static function updateMatches()
     {
         $from = Carbon::now()->toDateString();
         $until = Carbon::now()->addDays(4)->toDateString();
@@ -83,7 +73,32 @@ class Matche extends Model
     {
         $today = Carbon::now()->toDateString();
         $until = Carbon::now()->addDays($days)->toDateString();
-        return $query->whereDate('match_date', '>=', $today)->whereDate('match_date', '<=', $until);
+        return $query->whereDate('match_date', '>', $today)->whereDate('match_date', '<=', $until);
+    }
+
+    /**
+     * Scope a query to get today matches
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeToday($query)
+    {
+        $today = Carbon::now()->toDateString();
+        return $query->whereDate('match_date', '=', $today);
+    }
+
+
+    /**
+     * Scope a query to get past matches
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePast($query)
+    {
+        $today = Carbon::now()->toDateString();
+        return $query->whereDate('match_date', '<', $today);
     }
 
 

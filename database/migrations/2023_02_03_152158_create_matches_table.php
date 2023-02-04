@@ -21,13 +21,17 @@ return new class extends Migration
             
             $table->string('hometeam_name');
             $table->string('hometeam_shortname');
-            $table->string('hometeam_tla');
-            $table->string('hometeam_crest');
+            $table->string('hometeam_tla')->nullable();
+            $table->string('hometeam_crest')->nullable();
 
             $table->string('awayteam_name');
             $table->string('awayteam_shortname');
-            $table->string('awayteam_tla');
-            $table->string('awayteam_crest');
+            $table->string('awayteam_tla')->nullable();
+            $table->string('awayteam_crest')->nullable();
+
+            $table->string('competition_name')->nullable();
+            $table->string('competition_type')->nullable();
+            $table->string('competition_emblem')->nullable();
             
             $table->string('winner')->nullable();
             $table->string('duration')->nullable();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Matche;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class MatcheController extends Controller
@@ -12,79 +13,41 @@ class MatcheController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request): View
     {
-        return view('matches.index');
-
-
-        //$result = Matche::getMatchs();
-        //dd($result['filters']);
-        //dd($result['resultSet']);
+        $results = Matche::today();
+        
+        return view('matches.index',[
+            'results' => $results->paginate(10),
+            'time_str' => "Hoy",
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function nextday(Request $request): View
     {
-        //
+        $results = Matche::next(1);
+        return view('matches.index',[
+            'results' => $results->paginate(10),
+            'time_str' => "Mañana",
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function week(Request $request): View
     {
-        //
+        $results = Matche::next(7);
+        return view('matches.index',[
+            'results' => $results->paginate(10),
+            'time_str' => "esta Semana",
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Matche  $matche
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Matche $matche)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Matche  $matche
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Matche $matche)
+    public function past(Request $request): View
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Matche  $matche
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Matche $matche)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Matche  $matche
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Matche $matche)
-    {
-        //
+        $results = Matche::past();
+        return view('matches.index',[
+            'results' => $results->paginate(10),
+            'time_str' => "pasados",
+        ]);
     }
 }
