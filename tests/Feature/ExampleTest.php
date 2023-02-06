@@ -2,20 +2,20 @@
 
 namespace Tests\Feature;
 
+use App\Models\Matche;
+
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_the_application_returns_a_successful_response()
+    
+    public function test_get_matches_from_api()
     {
-        $response = $this->get('/');
+        $response = Matche::updateMatches();
 
-        $response->assertStatus(200);
+        $counts = count($response);
+
+        $this->assertNotEmpty($response, "Se recibieron " . $counts . " datos exitosamente de la api");
     }
 }
