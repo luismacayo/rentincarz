@@ -17,8 +17,10 @@ Api para usar https://www.football-data.org/
     - `docker-compose build`
     - Luego levantar servicios
     - `docker-compose up -d`
-    - Entrar a http://localhost:8080 visualizar resultados
+    - Entrar a http://localhost:8080 visualizar resultados por dia actual,semanal,pasados
     - migrar base de datos 
-    - `docker-compose exec app php artisan migrate:fresh`
+    - `docker-compose exec app php /var/www/artisan migrate:fresh`
     - actualizar resultados 
-    - `docker-compose exec app php artisan matches:update`
+    - `docker-compose exec app php /var/www/artisan matches:update`
+    -- Test
+    - `docker-compose exec app php /var/www/artisan test`
