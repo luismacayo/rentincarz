@@ -22,5 +22,5 @@ Api para usar https://www.football-data.org/
     - `docker-compose exec app php /var/www/artisan migrate:fresh`
     - actualizar resultados 
     - `docker-compose exec app php /var/www/artisan matches:update`
-    -- Test
+    - Realizar Test
     - `docker-compose exec app php /var/www/artisan test`
