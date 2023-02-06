@@ -29,7 +29,7 @@ class MatchesUpdate extends Command
     public function handle()
     {
         $this->output->title("Actualizando partidos...");
-        $results = Matche::getMatchs();
+        $results = Matche::updateMatches();
 
         foreach ($results['matches'] as $result) {
             Matche::updateOrCreate([
@@ -44,6 +44,9 @@ class MatchesUpdate extends Command
                 'awayteam_shortname' => $result['awayTeam']['shortName'],
                 'awayteam_tla' => $result['awayTeam']['tla'],
                 'awayteam_crest' => $result['awayTeam']['crest'],
+                'competition_name' => $result['competition']['name'],
+                'competition_type' => $result['competition']['type'],
+                'competition_emblem' => $result['competition']['emblem'],
                 'winner' => $result['score']['winner'],
                 'duration' => $result['score']['duration'],
             ]);
